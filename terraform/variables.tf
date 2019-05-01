@@ -27,12 +27,12 @@ variable "jenkins_master_instance_type" {
 
 variable "haproxy_ami" {
   default = {
-    eu-west-2 = "ami-0eab3a90fc693af19"
+    eu-west-2 = "ami-0883141bc92a74917"
   }
-  description = "AMI for haproxy (CentOS 7.6)"
+  description = "AMI for HAProxy (Ubuntu 18.04)"
 }
 
 variable "haproxy_instance_type" {
   default = "t2.micro"
-  description = "Instance type for haproxy machine"
+  description = "Instance type for HAProxy machine"
 }

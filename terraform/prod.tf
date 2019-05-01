@@ -56,7 +56,7 @@ resource "aws_instance" "haproxy" {
   ]
   tags {
     Name = "wg_sandbox_haproxy"
-    full_name = "wg_sandbox_haproxy-centos-7.6-x86_64"
+    full_name = "wg_sandbox_haproxy-ubuntu-bionic-x86_64"
     group = "proxies"
     environment = "dev"
   }
