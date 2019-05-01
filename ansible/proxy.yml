@@ -1,0 +1,5 @@
+- hosts: wireguard:proxies
+  become: True
+  roles:
+    - wireguard
+    - wireguard-server

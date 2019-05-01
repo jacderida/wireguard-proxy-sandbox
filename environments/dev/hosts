@@ -1,0 +1,9 @@
+[proxies]
+wg_sandbox_haproxy
+
+[masters]
+jenkins_master
+
+[wireguard]
+jenkins_master
+wg_sandbox_haproxy
