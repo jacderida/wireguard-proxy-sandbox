@@ -13,4 +13,5 @@ EC2_INI_PATH=environments/dev/ec2-bastion.ini ansible-playbook -i environments/d
     --vault-password-file=~/.ansible/vault-pass \
     --private-key=~/.ssh/ansible_prod \
     --limit=wg_sandbox_jenkins_master \
+    -e "wg_haproxy_endpoint=$proxy_dns" \
     -u ansible ansible/master.yml
