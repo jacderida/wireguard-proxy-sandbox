@@ -19,9 +19,7 @@ endif
 		-e "ansible_vault_password=$$(cat ~/.ansible/vault-pass)" \
 		-u ansible ansible/proxy.yml
 	./prepare_proxy.sh
+	./run_ansible_against_mac.sh
 
 provision-master:
 	./run_ansible_against_master.sh
-
-provision-macos:
-	./run_ansible_against_mac.sh

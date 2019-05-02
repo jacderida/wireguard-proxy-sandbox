@@ -73,6 +73,15 @@ resource "aws_security_group_rule" "jenkins_master_ingress_ssh_from_haproxy" {
   security_group_id = "${aws_security_group.jenkins_master.id}"
 }
 
+resource "aws_security_group_rule" "jenkins_master_ingress_51820_from_haproxy" {
+  type = "ingress"
+  from_port = 51820
+  to_port = 51820
+  protocol = "udp"
+  source_security_group_id = "${aws_security_group.haproxy.id}"
+  security_group_id = "${aws_security_group.jenkins_master.id}"
+}
+
 resource "aws_security_group_rule" "jenkins_master_egress_http" {
   type = "egress"
   from_port = 80
@@ -96,6 +105,15 @@ resource "aws_security_group_rule" "jenkins_master_egress_ssh" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.jenkins_master.id}"
+}
+
+resource "aws_security_group_rule" "jenkins_master_egress_51820" {
+  type = "egress"
+  from_port = 51820
+  to_port = 51820
+  protocol = "udp"
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.jenkins_master.id}"
 }
