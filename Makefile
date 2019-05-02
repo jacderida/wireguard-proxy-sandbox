@@ -9,8 +9,7 @@ ifndef AWS_SECRET_ACCESS_KEY
 endif
 	cd terraform && terraform init && terraform apply -auto-approve
 	rm -rf ~/.ansible/tmp
-	@echo "Sleep for 2 minutes to allow SSH to become available and apt updates on Linux instances..."
-	@sleep 120
+	./wait_for_proxy.sh
 	EC2_INI_PATH=environments/dev/ec2.ini ansible-playbook -i environments/dev \
 		--vault-password-file=~/.ansible/vault-pass \
 		--private-key=~/.ssh/ansible_prod \
@@ -19,6 +18,7 @@ endif
 		-e "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
 		-e "ansible_vault_password=$$(cat ~/.ansible/vault-pass)" \
 		-u ansible ansible/proxy.yml
+	./prepare_proxy.sh
 
 provision-master:
 	EC2_INI_PATH=environments/dev/ec2-bastion.ini ansible-playbook -i environments/dev \
