@@ -79,6 +79,7 @@
 - name: 'install system virtualenv'
   pip:
     name: virtualenv
+    executable: /usr/local/bin/pip
 
 - name: 'clone repo'
   git:

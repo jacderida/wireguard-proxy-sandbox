@@ -1,4 +1,4 @@
-- hosts: wireguard:proxies
+- hosts: wireguard:masters
   become: True
   roles:
     - wireguard
