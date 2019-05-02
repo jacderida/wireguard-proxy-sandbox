@@ -13,6 +13,15 @@ resource "aws_security_group_rule" "haproxy_ingress_ssh" {
   security_group_id = "${aws_security_group.haproxy.id}"
 }
 
+resource "aws_security_group_rule" "haproxy_ingress_51820" {
+  type = "ingress"
+  from_port = 51820
+  to_port = 51820
+  protocol = "udp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.haproxy.id}"
+}
+
 resource "aws_security_group_rule" "haproxy_egress_all_jenkins_master_traffic" {
   type = "egress"
   from_port = 0
