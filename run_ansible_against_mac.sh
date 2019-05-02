@@ -8,10 +8,11 @@ proxy_dns=$(aws ec2 describe-instances \
     "Name=instance-state-name,Values=running" \
     | jq '.Reservations | .[0] | .Instances | .[0] | .PublicDnsName' \
     | sed 's/\"//g')
-echo "Remote endpoint is at $proxy_dns"
-EC2_INI_PATH=environments/dev/ec2-bastion.ini ansible-playbook -i environments/dev \
+echo "Jenkins master is at $proxy_dns"
+echo "Attempting Ansible run against macOS slave... (can be 10+ seconds before output)"
+ANSIBLE_SSH_PIPELINING=true ansible-playbook -i environments/dev/hosts \
+    --limit=wg_sandbox_macos_client \
     --vault-password-file=~/.ansible/vault-pass \
-    --private-key=~/.ssh/ansible_prod \
-    --limit=wg_sandbox_jenkins_master \
+    --private-key=~/.ssh/id_rsa \
     -e "wg_haproxy_endpoint=$proxy_dns" \
-    -u ansible ansible/master.yml
+    ansible/macos.yml

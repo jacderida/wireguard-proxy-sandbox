@@ -1,0 +1,5 @@
+- hosts: wireguard:slaves
+  become: True
+  roles:
+    - wireguard
+    - wireguard-client

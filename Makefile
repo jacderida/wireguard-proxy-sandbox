@@ -22,3 +22,6 @@ endif
 
 provision-master:
 	./run_ansible_against_master.sh
+
+provision-macos:
+	./run_ansible_against_mac.sh
