@@ -7,3 +7,4 @@ jenkins_master
 [wireguard]
 jenkins_master
 wg_sandbox_haproxy
+macos_client ansible_host=192.168.1.17 ansible_user=qamaidsafe

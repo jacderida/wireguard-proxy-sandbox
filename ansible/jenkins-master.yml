@@ -1,0 +1,6 @@
+- hosts: wireguard:masters
+  become: True
+  roles:
+    - wireguard
+    - wireguard-client
+    - ansible-provisioner
