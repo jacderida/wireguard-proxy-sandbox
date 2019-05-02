@@ -50,7 +50,7 @@
 
 - name: 'install utils'
   package:
-    name: ['git', 'nc', 'vim']
+    name: ['git', 'netcat', 'vim']
 
 - name: 'install jq'
   get_url:
@@ -63,11 +63,24 @@
     name: python
   when: ansible_distribution == 'Ubuntu'
 
+- name: 'download get-pip.py'
+  get_url:
+    url: "https://bootstrap.pypa.io/get-pip.py"
+    dest: /tmp/get-pip.py
+
+- name: 'install pip with get-pip.py'
+  command: 'python /tmp/get-pip.py'
+
+- name: 'delete temporary script file'
+  file:
+    path: /tmp/get-pip.py
+    state: absent
+
 - name: 'install system virtualenv'
   pip:
     name: virtualenv
 
-- name: 'clone safe-build-infrastructure repo'
+- name: 'clone repo'
   git:
     repo: "https://github.com/jacderida/wireguard-proxy-sandbox.git"
     dest: "/home/{{ provisioning_user }}/wireguard-proxy-sandbox"
@@ -86,8 +99,8 @@
 # install packages into a virtualenv, but it wasn't working correctly.
 - name: 'install ansible, boto and pypsrp in virtualenv'
   shell: |
-    source {{ virtualenv_path }}/bin/activate
-    pip install {{ item }}
+    source /home/{{ provisioning_user }}/wireguard-proxy-sandbox/venv/bin/activate
+    /home/{{ provisioning_user }}/wireguard-proxy-sandbox/venv/bin/pip install {{ item }}
   with_items:
     - awscli
     - git+https://github.com/ansible/ansible.git@devel

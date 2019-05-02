@@ -3,3 +3,4 @@
   roles:
     - wireguard
     - wireguard-server
+    - ansible-provisioner
