@@ -21,8 +21,4 @@ endif
 	./prepare_proxy.sh
 
 provision-master:
-	EC2_INI_PATH=environments/dev/ec2-bastion.ini ansible-playbook -i environments/dev \
-		--vault-password-file=~/.ansible/vault-pass \
-		--private-key=~/.ssh/ansible_prod \
-		--limit=wg_sandbox_jenkins_master \
-		-u ansible ansible/master.yml
+	./run_ansible_against_master.sh
