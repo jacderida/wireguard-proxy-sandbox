@@ -5,9 +5,9 @@ wg_sandbox_haproxy
 wg_sandbox_jenkins_master
 
 [slaves]
-wg_sandbox_macos_client ansible_host=192.168.1.17 ansible_user=qamaidsafe
+wg_sandbox_macos_client ansible_host=192.168.1.190 ansible_user=qamaidsafe
 
 [wireguard]
 wg_sandbox_jenkins_master
 wg_sandbox_haproxy
-wg_sandbox_macos_client ansible_host=192.168.1.17 ansible_user=qamaidsafe
+wg_sandbox_macos_client ansible_host=192.168.1.190 ansible_user=qamaidsafe
