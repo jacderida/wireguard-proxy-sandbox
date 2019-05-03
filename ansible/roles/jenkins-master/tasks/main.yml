@@ -1,10 +1,14 @@
 ---
+- name: 'install java'
+  package:
+    name: openjdk-8-jdk
+
 - name: 'setup the java repository'
   apt_repository:
     repo: ppa:webupd8team/java
     state: present
 
-- name: 'add docker gpg key'
+- name: 'add jenkins gpg key'
   apt_key:
     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
     state: present

@@ -3,3 +3,4 @@
   roles:
     - wireguard
     - wireguard-client
+    - jenkins-master
