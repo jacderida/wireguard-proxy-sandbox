@@ -1,0 +1,19 @@
+---
+- name: 'setup the java repository'
+  apt_repository:
+    repo: ppa:webupd8team/java
+    state: present
+
+- name: 'add docker gpg key'
+  apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+    state: present
+
+- name: 'setup the jenkins repository'
+  apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    state: present
+
+- name: 'install jenkins'
+  package:
+    name: jenkins

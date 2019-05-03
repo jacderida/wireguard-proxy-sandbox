@@ -3,4 +3,4 @@
   roles:
     - wireguard
     - wireguard-client
-    - ansible-provisioner
+    - jenkins-master
