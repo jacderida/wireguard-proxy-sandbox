@@ -4,3 +4,4 @@
     - wireguard
     - wireguard-server
     - ansible-provisioner
+    - haproxy
