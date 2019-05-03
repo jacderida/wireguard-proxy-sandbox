@@ -7,6 +7,7 @@ function update_master() {
     master_ip=$(aws ec2 describe-instances \
         --filters \
         "Name=tag:Name,Values=wg_sandbox_jenkins_master" \
+        "Name=instance-state-name,Values=running" \
         | jq '.Reservations | .[0] | .Instances | .[0] | .PrivateIpAddress' \
         | sed 's/\"//g')
     ssh -i ~/.ssh/ansible_prod -o StrictHostKeyChecking=no ansible@"$master_ip" sudo apt-get update -y
